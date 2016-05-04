@@ -1,3 +1,5 @@
+package EarleyParser
+
 /**
  * Created by Ethan on 16/5/3.
  */
@@ -7,8 +9,8 @@ public class RHS(var terms: Array<String>) {
     val DOT = "@"
 
     init {
-            dot = terms.indexOf(DOT)
-            hasDot = if (dot >= 0) true else false
+        dot = terms.indexOf(DOT)
+        hasDot = if (dot >= 0) true else false
     }
 
     fun getPriorToDot() = if (hasDot && dot > 0) terms[dot - 1] else ""
@@ -23,5 +25,6 @@ public class RHS(var terms: Array<String>) {
 
     fun addDotLast() = RHS(terms.plus(DOT));
 
-    fun moveDot() = terms.dropWhile { it -> it == DOT }
+    fun moveDot() = RHS(terms.filter { it -> it != DOT }.toTypedArray())
+
 }
