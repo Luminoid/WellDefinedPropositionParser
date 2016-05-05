@@ -25,6 +25,30 @@ public class RHS(var terms: Array<String>) {
 
     fun addDotLast() = RHS(terms.plus(DOT));
 
-    fun moveDot() = RHS(terms.filter { it -> it != DOT }.toTypedArray())
+    fun moveDot():RHS{
+        var newTerms = terms
+        var i = newTerms.indexOf(DOT)
+        newTerms[i] = terms[i+1]
+        newTerms[i+1] = DOT
+        return RHS(newTerms)
+    }
 
+    override fun equals(other: Any?): Boolean {
+        other?.let {
+            var rhs = other as RHS
+            for(i in terms.indices){
+                if (rhs.terms[i] != terms[i])
+                    return false
+            }
+            return (dot == rhs.dot)
+        }
+        return false
+    }
+
+    override fun toString(): String {
+        var str = ""
+        for (t in terms)
+            str += "$t "
+        return str
+    }
 }

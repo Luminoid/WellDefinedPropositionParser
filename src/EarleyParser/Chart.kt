@@ -13,4 +13,12 @@ class Chart() {
     }
 
     fun getState(i: Int) = if (i < 0 || i >= chart.size) null else chart[i]
+
+    override fun toString(): String {
+        var str = ""
+        for (c in chart)
+            str += "$c\n"
+        return str
+    }
+
 }
