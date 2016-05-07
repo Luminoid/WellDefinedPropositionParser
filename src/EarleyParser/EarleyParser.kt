@@ -16,9 +16,9 @@ class EarleyParser(var grammer: Grammer) {
         charts[0].addState(start)
 
         var i = 0
-        while (i < charts.size){
+        while (i < charts.size) {
             var j = 0
-            while (j < charts[i].chart.size){
+            while (j < charts[i].chart.size) {
                 var st = charts[i].getState(j)
                 st?.let {
                     var next_term = st.getAfterDot()
@@ -77,7 +77,7 @@ class EarleyParser(var grammer: Grammer) {
             st?.let {
                 var after = st.getAfterDot()
                 if (lhs.equals(after)) {
-                    var ns = State(st.lhs, st.rhs.moveDot(), s.i, s.j, s)
+                    var ns = State(st.lhs, st.rhs.moveDot(), st.i, s.j, s)
                     charts[s.j].addState(ns)
                 }
             }
